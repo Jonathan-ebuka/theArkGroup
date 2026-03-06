@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+/* Monument Extended — self-hosted font */
+@font-face {
+  font-family: "Monument Extended";
+  src: url("/fonts/MonumentExtended-Ultrabold.woff2") format("woff2"),
+       url("/fonts/MonumentExtended-Ultrabold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  /* Colors */
+  --color-navy: #0a1628;
+  --color-navy-light: #111d32;
+  --color-navy-mid: #162340;
+  --color-offwhite: #f5f3ef;
+  --color-offwhite-dark: #ebe8e2;
+  --color-slate: #4a5568;
+  --color-slate-light: #718096;
+  --color-slate-dark: #2d3748;
+  --color-gold: #b8952a;
+  --color-gold-muted: #a6863a;
+  --color-gold-light: #d4b44a;
+
+  /* Typography */
+  --font-display: "Monument Extended", "Arial Black", sans-serif;
+  --font-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  /* Spacing scale */
+  --spacing-section: 8rem;
+  --spacing-section-sm: 5rem;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: var(--color-slate);
+    background-color: var(--color-offwhite);
+  }
+
+  h1, h2 {
+    font-family: var(--font-display);
+    color: var(--color-navy);
+    text-transform: uppercase;
+  }
+
+  h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    color: var(--color-navy);
+  }
+
+  ::selection {
+    background-color: var(--color-gold);
+    color: var(--color-offwhite);
+  }
+}
+
+/* Hero entrance — CSS keyframe, always fires on page load */
+@keyframes hero-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-fade-up {
+  animation: hero-fade-up 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) both;
+}
+
+/* Scroll-fill text — outlined text that fills on scroll */
+.text-stroke-outline {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-navy);
+  color: transparent;
+}
+
+.text-stroke-outline-gold {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke: 1.5px var(--color-gold);
+  color: transparent;
+}
+
+.text-fill-layer {
+  clip-path: inset(0 calc(100% - var(--fill, 0%)) 0 0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-fade-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
