@@ -8,6 +8,12 @@ export function FinalCTA() {
     <section className="bg-navy py-section-sm md:py-section">
       <div className="mx-auto max-w-7xl px-6 text-center lg:px-12">
         <ScrollReveal>
+          <p className="mx-auto mb-16 max-w-2xl font-serif text-lg italic leading-relaxed text-offwhite/40 md:text-xl">
+            &ldquo;Structure is the foundation of every enduring business.&rdquo;
+          </p>
+        </ScrollReveal>
+
+        <ScrollReveal>
           <p className="text-xs tracking-[0.3em] text-gold uppercase">
             Let&apos;s Build
           </p>

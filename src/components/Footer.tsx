@@ -4,6 +4,7 @@ const footerLinks = [
   { href: "#about", label: "About" },
   { href: "#divisions", label: "Divisions" },
   { href: "/approach", label: "Approach" },
+  { href: "/automation", label: "Automation" },
   { href: "/contact", label: "Contact" },
 ];
 
@@ -21,8 +22,7 @@ export function Footer() {
               The Ark Group
             </Link>
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-light">
-              Strategic advisory, operational systems, and capital architecture
-              designed for long-term growth.
+              Strategic architecture for businesses built to last.
             </p>
           </div>
 

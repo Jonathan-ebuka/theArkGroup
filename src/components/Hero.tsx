@@ -11,13 +11,13 @@ export function Hero() {
           className="hero-fade-up font-display text-[clamp(2.5rem,7.5vw,8rem)] leading-[1.05] font-extrabold tracking-tight text-offwhite uppercase"
           style={{ animationDelay: "0.2s" }}
         >
-          We Build Structures
+          Let&rsquo;s Give Structure to Your Business.
         </h1>
         <h2
           className="hero-fade-up mt-1 font-display text-[clamp(2.5rem,7.5vw,8rem)] leading-[1.05] font-extrabold tracking-tight text-gold uppercase"
           style={{ animationDelay: "0.35s" }}
         >
-          That Multiply.
+          Build on Purpose.
         </h2>
 
         {/* Credibility bar */}
@@ -53,9 +53,7 @@ export function Hero() {
           style={{ animationDelay: "0.7s" }}
         >
           <p className="max-w-lg text-lg leading-relaxed text-offwhite/70 md:text-xl">
-            Strategic advisory, operational systems, and capital architecture
-            designed for long-term growth &mdash;{" "}
-            <span className="font-medium text-offwhite">without the noise.</span>
+            Strategic architecture for businesses built to last.
           </p>
 
           <div className="flex flex-shrink-0 flex-wrap items-center gap-5">
@@ -69,7 +67,7 @@ export function Hero() {
               href="#divisions"
               className="group inline-flex items-center gap-2 text-sm tracking-widest text-offwhite/70 uppercase transition-colors duration-300 hover:text-offwhite"
             >
-              Our Divisions
+              Explore Our Divisions
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                 &rarr;
               </span>

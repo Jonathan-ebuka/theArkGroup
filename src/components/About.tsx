@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 
 const REVEAL_TEXT =
-  "We're a hands-on team of strategic advisors focused on helping ambitious businesses use structure and capital where it matters most. We cut through the noise and implement systems that compound.";
+  "The Ark Group is a strategic architecture firm focused on helping ambitious businesses build the structures required for long-term growth. We work across operational systems, financial architecture, and strategic positioning — ensuring every decision, framework, and partnership supports sustainable scale. We don't chase trends. We build foundations.";
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -72,15 +72,14 @@ export function About() {
               Designed for Scale.
             </h2>
             <p data-animate="fade-up" className="mt-8 text-sm leading-relaxed text-offwhite/60">
-              The Ark Group is not a single service business — it is a parent
-              structure engineered to build, scale, and sustain high-value
-              companies across advisory and capital.
+              The Ark Group is a strategic firm focused on helping purpose-driven
+              businesses build the structures required for sustainable growth. We
+              work across various areas ranging from operational systems,
+              financial architecture, to branding and strategic positioning;
+              ensuring every decision and framework supports long term scale.
             </p>
             <p data-animate="fade-up" className="mt-4 text-sm leading-relaxed text-offwhite/60">
-              We operate with structure-first thinking: every decision, system,
-              and partnership is designed for clarity, long-term positioning, and
-              compounding growth. We don&apos;t chase trends. We build
-              foundations.
+              We build foundations.
             </p>
             <div data-animate="expand-width" className="mt-10 h-px w-16 bg-gold" />
           </div>

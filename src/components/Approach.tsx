@@ -8,19 +8,19 @@ const principles = [
     number: "01",
     title: "Clarity",
     description:
-      "Before we build, we define. Every engagement starts with a sharp understanding of the landscape, the opportunity, and the structural requirements for success.",
+      "Every engagement begins with deep understanding of the business, market, and structural constraints. We define before we build.",
   },
   {
     number: "02",
     title: "Structure",
     description:
-      "We design operational and financial systems that are built to last. No shortcuts. No patchwork. Architecture that supports growth at every stage.",
+      "Design operational and financial systems that support long term growth. No shortcuts. No patchwork. Architecture built to last.",
   },
   {
     number: "03",
     title: "Scale",
     description:
-      "With the right foundation in place, growth becomes inevitable. We position every venture for sustainable, compounding scale — not quick wins.",
+      "Position businesses for sustainable expansion once the correct foundation is built. Growth becomes inevitable when structure precedes it.",
   },
 ];
 

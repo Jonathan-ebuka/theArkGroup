@@ -40,7 +40,7 @@ export function Divisions() {
         </ScrollReveal>
         <ScrollReveal delay={0.1}>
           <h2 className="mt-6 max-w-2xl font-serif text-4xl leading-tight font-light text-offwhite md:text-5xl">
-            Two Pillars.
+            The Ark Framework.
             <br />
             One Architecture.
           </h2>
