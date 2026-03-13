@@ -4,11 +4,11 @@ import Link from "next/link";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-screen flex-col justify-center bg-offwhite px-6 pt-28 pb-20 lg:px-12">
+    <section className="relative flex min-h-screen flex-col justify-center bg-navy px-6 pt-28 pb-20 lg:px-12">
       <div className="mx-auto w-full max-w-7xl">
         {/* Massive headline */}
         <h1
-          className="hero-fade-up font-display text-[clamp(2.5rem,7.5vw,8rem)] leading-[1.05] font-extrabold tracking-tight text-navy uppercase"
+          className="hero-fade-up font-display text-[clamp(2.5rem,7.5vw,8rem)] leading-[1.05] font-extrabold tracking-tight text-offwhite uppercase"
           style={{ animationDelay: "0.2s" }}
         >
           We Build Structures
@@ -30,17 +30,17 @@ export function Hero() {
               {[...Array(4)].map((_, i) => (
                 <div
                   key={i}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-offwhite bg-navy text-[10px] font-medium text-offwhite/70"
+                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-navy-mid bg-navy-light text-[10px] font-medium text-offwhite/70"
                 >
                   {["JO", "AK", "SC", "MT"][i]}
                 </div>
               ))}
             </div>
             <div>
-              <p className="text-xs font-medium tracking-widest text-navy uppercase">
+              <p className="text-xs font-medium tracking-widest text-offwhite/90 uppercase">
                 Trusted by founders &amp; operators
               </p>
-              <p className="text-xs tracking-wide text-slate-light uppercase">
+              <p className="text-xs tracking-wide text-offwhite/50 uppercase">
                 Across advisory, capital &amp; structuring
               </p>
             </div>
@@ -52,10 +52,10 @@ export function Hero() {
           className="hero-fade-up mt-12 flex flex-col gap-10 md:flex-row md:items-end md:justify-between"
           style={{ animationDelay: "0.7s" }}
         >
-          <p className="max-w-lg text-lg leading-relaxed text-slate md:text-xl">
+          <p className="max-w-lg text-lg leading-relaxed text-offwhite/70 md:text-xl">
             Strategic advisory, operational systems, and capital architecture
             designed for long-term growth &mdash;{" "}
-            <span className="font-medium text-navy">without the noise.</span>
+            <span className="font-medium text-offwhite">without the noise.</span>
           </p>
 
           <div className="flex flex-shrink-0 flex-wrap items-center gap-5">
@@ -67,7 +67,7 @@ export function Hero() {
             </Link>
             <Link
               href="#divisions"
-              className="group inline-flex items-center gap-2 text-sm tracking-widest text-slate uppercase transition-colors duration-300 hover:text-navy"
+              className="group inline-flex items-center gap-2 text-sm tracking-widest text-offwhite/70 uppercase transition-colors duration-300 hover:text-offwhite"
             >
               Our Divisions
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
