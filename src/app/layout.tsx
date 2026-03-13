@@ -6,7 +6,6 @@ import { Footer } from "@/components/Footer";
 import { GridOverlay } from "@/components/GridOverlay";
 import { ScrollAnimations } from "@/components/ScrollAnimations";
 import { SmoothScroll } from "@/components/SmoothScroll";
-import { LogoReveal } from "@/components/LogoReveal";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -37,7 +36,6 @@ export default function RootLayout({
         <GridOverlay />
         <SmoothScroll />
         <ScrollAnimations />
-        <LogoReveal />
         <Navigation />
         <main>{children}</main>
         <Footer />
