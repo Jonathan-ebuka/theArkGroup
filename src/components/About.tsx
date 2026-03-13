@@ -86,10 +86,11 @@ export function About() {
           </div>
 
           {/* Right — scroll letter reveal */}
-          <div className="relative">
+          <div className="relative overflow-hidden">
             <div
               ref={textContainerRef}
-              className="font-display text-[clamp(2rem,5vw,4.5rem)] leading-[1.1] font-extrabold tracking-tight uppercase"
+              className="font-display text-[clamp(1.5rem,2.8vw,2.25rem)] leading-[1.2] font-extrabold tracking-tight uppercase break-words"
+              style={{ overflowWrap: "break-word", wordBreak: "break-word" }}
             />
           </div>
         </div>
