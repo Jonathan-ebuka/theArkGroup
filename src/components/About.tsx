@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 
 const REVEAL_TEXT =
-  "The Ark Group is a strategic architecture firm focused on helping ambitious businesses build the structures required for long-term growth. We work across operational systems, financial architecture, and strategic positioning — ensuring every decision, framework, and partnership supports sustainable scale. We don't chase trends. We build foundations.";
+  "THE ARK GROUP\nIS A STRATEGIC\nARCHITECTURE FIRM.\n\nWE HELP AMBITIOUS\nBUSINESSES BUILD\nSTRUCTURES FOR\nLONG-TERM GROWTH.\n\nACROSS OPERATIONAL\nSYSTEMS, FINANCIAL\nARCHITECTURE,\nAND STRATEGIC\nPOSITIONING.\n\nWE DON'T CHASE\nTRENDS.\n\nWE BUILD\nFOUNDATIONS.";
 
 export function About() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -19,11 +19,15 @@ export function About() {
     charsRef.current = [];
 
     for (const char of REVEAL_TEXT) {
-      const span = document.createElement("span");
-      span.classList.add("scroll-letter");
-      span.textContent = char === " " ? "\u00A0" : char;
-      container.appendChild(span);
-      charsRef.current.push(span);
+      if (char === "\n") {
+        container.appendChild(document.createElement("br"));
+      } else {
+        const span = document.createElement("span");
+        span.classList.add("scroll-letter");
+        span.textContent = char === " " ? "\u00A0" : char;
+        container.appendChild(span);
+        charsRef.current.push(span);
+      }
     }
 
     const handleScroll = () => {
@@ -88,8 +92,7 @@ export function About() {
           <div className="relative overflow-hidden">
             <div
               ref={textContainerRef}
-              className="font-display text-[clamp(1.5rem,2.8vw,2.25rem)] leading-[1.2] font-extrabold tracking-tight uppercase break-words"
-              style={{ overflowWrap: "break-word", wordBreak: "break-word" }}
+              className="font-display text-[clamp(2rem,3.8vw,3.5rem)] leading-[1.15] font-extrabold tracking-tight"
             />
           </div>
         </div>
