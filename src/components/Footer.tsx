@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const footerLinks = [
-  { href: "#about", label: "About" },
+  { href: "/about", label: "About" },
   { href: "/divisions", label: "Divisions" },
   { href: "/approach", label: "Approach" },
   { href: "/automation", label: "Automation" },
@@ -10,7 +10,14 @@ const footerLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-offwhite-dark/30 bg-navy">
+    <footer className="bg-navy">
+      {/* Animated divider line */}
+      <div className="mx-auto max-w-7xl px-6 lg:px-12">
+        <div
+          data-animate="expand-width"
+          className="h-px w-full bg-offwhite/15"
+        />
+      </div>
       <div className="mx-auto max-w-7xl px-6 py-16 lg:px-12">
         <div className="flex flex-col items-start justify-between gap-12 md:flex-row md:items-end">
           {/* Brand */}
@@ -42,7 +49,7 @@ export function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-offwhite/10 pt-8 md:flex-row md:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 pt-8 md:flex-row md:items-center">
           <p className="text-xs text-offwhite/40">
             &copy; {new Date().getFullYear()} The Ark Group. All rights
             reserved.

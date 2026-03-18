@@ -63,7 +63,7 @@ export function Divisions() {
                       key={service}
                       className="flex items-center gap-3 text-sm text-offwhite/60"
                     >
-                      <span className="h-px w-4 bg-gold/50" />
+                      <span className="block h-1 w-1 rounded-full bg-gold/50" />
                       {service}
                     </li>
                   ))}

@@ -6,11 +6,8 @@ import Link from "next/link"
 import { RollingLink } from "./RollingLink"
 
 const menuLinks = [
-  { href: "#about", label: "About" },
-  { href: "/divisions", label: "Divisions" },
-  { href: "/approach", label: "Approach" },
+  { href: "/about", label: "About" },
   { href: "/automation", label: "Automation" },
-  { href: "/contact", label: "Contact" },
 ]
 
 export function Navigation() {
@@ -59,7 +56,8 @@ export function Navigation() {
     setIsMenuOpen(false)
   }, [pathname])
 
-  const forceLightText = isScrolled || isOverDark || isMenuOpen
+  const isDarkNavPage = pathname === "/about" || pathname === "/contact"
+  const forceLightText = isScrolled || isOverDark || isMenuOpen || isDarkNavPage
   const textColor = forceLightText ? "text-offwhite" : "text-navy"
   const textMuted = forceLightText
     ? "text-offwhite/70 hover:text-offwhite"
@@ -68,38 +66,51 @@ export function Navigation() {
   return (
     <>
       <header
-        className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isMenuOpen
-            ? "border-navy bg-navy shadow-lg"
+            ? "bg-navy shadow-lg"
             : isScrolled
-              ? "border-navy bg-navy/95 shadow-lg backdrop-blur-md"
-              : isOverDark
-                ? "border-offwhite/10 bg-transparent"
-                : "border-navy/10 bg-offwhite/80 backdrop-blur-sm"
+              ? "bg-navy/95 shadow-lg backdrop-blur-md"
+              : isDarkNavPage
+                ? "bg-navy"
+                : isOverDark
+                  ? "bg-transparent"
+                  : "bg-white/80 backdrop-blur-sm"
         }`}
         style={{
           transitionTimingFunction: "cubic-bezier(0.25,0.1,0.25,1)",
         }}
       >
-        <nav className='mx-auto flex max-w-7xl items-center justify-between px-6 py-5 lg:px-12'>
+        <nav className='relative mx-auto flex max-w-7xl items-center justify-between px-4 py-5 lg:px-4'>
           {/* Logo — left */}
           <Link
             href='/'
-            className={`font-serif text-xl tracking-wide transition-colors duration-300 hover:opacity-80 ${textColor}`}
+            className={`font-sans text-lg font-semibold tracking-tight transition-colors duration-300 hover:opacity-80 ${textColor}`}
           >
             The Ark Group
           </Link>
 
-          {/* Desktop links — visible on md+ */}
-          <div className='hidden items-center gap-10 md:flex'>
-            {menuLinks.map((link) => (
-              <RollingLink
-                key={link.label}
-                href={link.href}
-                label={link.label}
-                className={`text-sm tracking-widest uppercase transition-colors duration-300 ${textMuted}`}
-              />
-            ))}
+          {/* Desktop links + Contact button — right */}
+          <div className='hidden items-center gap-6 md:flex'>
+            {menuLinks.map((link) => {
+              const isActive = pathname === link.href
+              const activeColor = forceLightText ? "text-white font-bold text-[13px]" : "text-[#111] font-bold text-[13px]"
+              return (
+                <RollingLink
+                  key={link.label}
+                  href={link.href}
+                  label={link.label}
+                  className={`tracking-wider uppercase transition-colors duration-300 ${isActive ? activeColor : `text-xs ${textMuted}`}`}
+                />
+              )
+            })}
+            <Link
+              href="/contact"
+              className="group relative isolate inline-block overflow-hidden border border-gold px-5 py-2 text-xs font-medium uppercase tracking-wider text-gold transition-colors duration-300"
+            >
+              <span className="absolute inset-0 translate-y-full bg-gold transition-transform duration-500 ease-out group-hover:translate-y-0" />
+              <span className="relative transition-colors duration-300 group-hover:text-white">Contact</span>
+            </Link>
           </div>
 
           {/* Mobile hamburger — visible on mobile only */}
@@ -131,7 +142,7 @@ export function Navigation() {
 
         {/* Mobile dropdown — slides down from nav */}
         <div
-          className={`overflow-hidden border-t border-offwhite/10 bg-navy transition-all duration-300 ease-out md:hidden ${
+          className={`overflow-hidden bg-navy transition-all duration-300 ease-out md:hidden ${
             isMenuOpen ? "max-h-[70vh] opacity-100" : "max-h-0 opacity-0"
           }`}
         >
@@ -149,7 +160,7 @@ export function Navigation() {
               ))}
             </ul>
 
-            <div className='mt-8 border-t border-offwhite/10 pt-6'>
+            <div className='mt-8 pt-6'>
               <p className='font-serif text-lg text-offwhite'>
                 hello@thearkgroup.com
               </p>

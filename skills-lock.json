@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "skills": {
+    "agent-browser": {
+      "source": "vercel-labs/agent-browser",
+      "sourceType": "github",
+      "computedHash": "6d6b675e8e0d74a489dd567a2d22765951a7e18a2ce8b6ec95291eccc83f9c32"
+    },
+    "audit-website": {
+      "source": "squirrelscan/skills",
+      "sourceType": "github",
+      "computedHash": "82588484b29316f3106185374cc6aedf409c38a0698d49f7034c9b5ec07a1aa7"
+    },
+    "frontend-design": {
+      "source": "pbakaus/impeccable",
+      "sourceType": "github",
+      "computedHash": "d3f5281a0299aa4808bbfd4afbfac0e28ff38fb0006c5cde9c4630f372573921"
+    },
+    "next-best-practices": {
+      "source": "vercel-labs/next-skills",
+      "sourceType": "github",
+      "computedHash": "c31ddd68ba5798a79a516c619b1e1fc4408cc4876ad600fefa4f5add4425719d"
+    },
+    "seo-audit": {
+      "source": "coreyhaines31/marketingskills",
+      "sourceType": "github",
+      "computedHash": "941f6f4db0f79248f6480256cf1838ed19bc1a0d70f499bb756f491142625cb4"
+    },
+    "tailwind-design-system": {
+      "source": "wshobson/agents",
+      "sourceType": "github",
+      "computedHash": "0fc7b79d08ee5168d46c6887014cbe5bd02f2c5e458858470e20fc8ecedefb46"
+    }
+  }
+}

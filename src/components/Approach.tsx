@@ -1,66 +1,152 @@
 "use client";
 
-import { ScrollReveal } from "./ScrollReveal";
-import { StaggerReveal, StaggerItem } from "./StaggerReveal";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef } from "react";
 
-const principles = [
+const services = [
   {
-    number: "01",
-    title: "Clarity",
+    number: "001",
+    title: "Strategy",
     description:
-      "Every engagement begins with deep understanding of the business, market, and structural constraints. We define before we build.",
+      "Our strategy services are designed to help businesses navigate the complexities of the modern market...",
   },
   {
-    number: "02",
-    title: "Structure",
+    number: "002",
+    title: "Operations",
     description:
-      "Design operational and financial systems that support long term growth. No shortcuts. No patchwork. Architecture built to last.",
+      "Intensive leadership training programs that foster essential skills such as critical thinking and agility.",
   },
   {
-    number: "03",
-    title: "Scale",
+    number: "003",
+    title: "Automation",
     description:
-      "Position businesses for sustainable expansion once the correct foundation is built. Growth becomes inevitable when structure precedes it.",
+      "Implement cutting-edge automation technologies that streamline workflows and eliminate bottlenecks.",
   },
 ];
 
 export function Approach() {
-  return (
-    <section id="approach" className="bg-offwhite py-section-sm md:py-section">
-      <div className="mx-auto max-w-7xl px-6 lg:px-12">
-        {/* Section header */}
-        <ScrollReveal>
-          <p className="text-xs tracking-[0.3em] text-gold uppercase">
-            Our Approach
-          </p>
-        </ScrollReveal>
-        <ScrollReveal delay={0.1}>
-          <h2 className="mt-6 max-w-2xl font-serif text-4xl leading-tight font-light text-navy md:text-5xl">
-            Three Principles.
-            <br />
-            One Discipline.
-          </h2>
-        </ScrollReveal>
+  const sectionRef = useRef<HTMLElement>(null);
 
-        {/* Principles grid */}
-        <StaggerReveal className="mt-20 grid gap-12 md:grid-cols-3 md:gap-8">
-          {principles.map((principle) => (
-            <StaggerItem key={principle.number}>
-              <div className="group">
-                <span className="text-sm tracking-widest text-gold/70">
-                  {principle.number}
-                </span>
-                <div className="mt-4 mb-6 h-px w-full bg-navy/10 transition-colors duration-500 group-hover:bg-gold/30" />
-                <h3 className="font-serif text-2xl font-light text-navy md:text-3xl">
-                  {principle.title}
-                </h3>
-                <p className="mt-4 leading-relaxed text-slate-light">
-                  {principle.description}
-                </p>
-              </div>
-            </StaggerItem>
+  useEffect(() => {
+    const targets = sectionRef.current?.querySelectorAll<HTMLElement>("[data-reveal]");
+    if (!targets) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const el = entry.target as HTMLElement;
+            const delay = el.dataset.delay ?? "0";
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add("opacity-100", "translate-y-0");
+            el.classList.remove("opacity-0", "translate-y-6");
+            observer.unobserve(el);
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    targets.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="approach" ref={sectionRef} className="bg-white py-20">
+      <div className="mx-auto max-w-360 px-6 md:px-12 lg:px-20">
+        {/* Header */}
+        <div className="relative mb-20 flex flex-col items-start justify-between gap-8 lg:mb-28 lg:flex-row">
+          <div
+            data-reveal
+            data-delay="0"
+            className="opacity-0 translate-y-6 transition-all duration-700 ease-out lg:w-3/4"
+          >
+            <h2 className="font-sans text-2xl leading-[1.1] tracking-tight text-[#111] sm:text-3xl md:text-4xl lg:text-5xl" style={{ fontWeight: 500 }}>
+              Our comprehensive suite of<br />
+              services are crafted to meet<br />
+              the needs of our clients.
+            </h2>
+          </div>
+          <div
+            data-reveal
+            data-delay="150"
+            className="opacity-0 translate-y-6 transition-all duration-700 ease-out flex justify-end lg:w-1/3"
+          >
+            <div className="relative w-full max-w-60 overflow-hidden rounded-lg">
+              <Image
+                src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&q=80&w=800"
+                alt="Working on laptop"
+                width={800}
+                height={600}
+                className="aspect-4/3 w-full object-cover grayscale-20 transition-all duration-700 hover:grayscale-0"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Label */}
+        <div
+          data-reveal
+          data-delay="0"
+          className="opacity-0 translate-y-6 transition-all duration-700 ease-out mb-8 flex items-center gap-2"
+        >
+          <span className="text-xs font-medium uppercase tracking-wider text-gray-600">
+            Our services
+          </span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-gray-400">
+            <path d="M7 7l10 10M17 7v10H7" />
+          </svg>
+        </div>
+
+        {/* Services List */}
+        <div className="border-t border-gray-100">
+          {services.map((service, i) => (
+            <div
+              key={service.number}
+              data-reveal
+              data-delay={i * 100}
+              className="opacity-0 translate-y-6 transition-all duration-700 ease-out"
+            >
+              <Link
+                href="/approach"
+                className="group block border-b border-gray-100 py-8 md:py-10"
+              >
+                <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-12 md:gap-4">
+                  {/* Number — swipe up on hover */}
+                  <div className="md:col-span-2">
+                    <div className="relative h-6 overflow-hidden">
+                      <span className="block text-base font-medium text-gray-400 transition-transform duration-300 group-hover:-translate-y-full">
+                        {service.number}
+                      </span>
+                      <span className="absolute left-0 top-full block text-base font-medium text-[#111] transition-transform duration-300 group-hover:-translate-y-full">
+                        {service.number}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="md:col-span-5">
+                    <h3 className="font-sans text-2xl text-[#111] md:text-3xl lg:text-4xl" style={{ fontWeight: 500 }}>
+                      {service.title}
+                    </h3>
+                  </div>
+                  <div className="md:col-span-4">
+                    <p className="max-w-sm text-sm leading-relaxed text-gray-500">
+                      {service.description}
+                    </p>
+                  </div>
+                  {/* Arrow — fills on hover */}
+                  <div className="flex justify-end md:col-span-1">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 transition-all duration-300 group-hover:border-[#f9fafb] group-hover:bg-[#f9fafb]">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#111]">
+                        <path d="M5 12h14M12 5l7 7-7 7" />
+                      </svg>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            </div>
           ))}
-        </StaggerReveal>
+        </div>
       </div>
     </section>
   );

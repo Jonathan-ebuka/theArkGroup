@@ -3,7 +3,7 @@ import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { GridOverlay } from "@/components/GridOverlay";
+
 import { ScrollAnimations } from "@/components/ScrollAnimations";
 import { SmoothScroll } from "@/components/SmoothScroll";
 
@@ -32,8 +32,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="bg-offwhite text-slate antialiased">
-        <GridOverlay />
+      <body className="bg-white text-slate antialiased">
+
         <SmoothScroll />
         <ScrollAnimations />
         <Navigation />
