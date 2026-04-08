@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useRef } from "react";
 
 const services = [
@@ -108,18 +107,12 @@ export function Approach() {
               data-delay={i * 100}
               className="opacity-0 translate-y-6 transition-all duration-700 ease-out"
             >
-              <Link
-                href="/approach"
-                className="group block border-b border-gray-100 py-8 md:py-10"
-              >
+              <div className="block border-b border-gray-100 py-8 md:py-10">
                 <div className="grid grid-cols-1 items-center gap-4 md:grid-cols-12 md:gap-4">
-                  {/* Number — swipe up on hover */}
+                  {/* Number */}
                   <div className="md:col-span-2">
                     <div className="relative h-6 overflow-hidden">
-                      <span className="block text-base font-medium text-gray-400 transition-transform duration-300 group-hover:-translate-y-full">
-                        {service.number}
-                      </span>
-                      <span className="absolute left-0 top-full block text-base font-medium text-[#111] transition-transform duration-300 group-hover:-translate-y-full">
+                      <span className="block text-base font-medium text-gray-400">
                         {service.number}
                       </span>
                     </div>
@@ -129,21 +122,13 @@ export function Approach() {
                       {service.title}
                     </h3>
                   </div>
-                  <div className="md:col-span-4">
+                  <div className="md:col-span-5">
                     <p className="max-w-sm text-sm leading-relaxed text-gray-500">
                       {service.description}
                     </p>
                   </div>
-                  {/* Arrow — fills on hover */}
-                  <div className="flex justify-end md:col-span-1">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-200 transition-all duration-300 group-hover:border-[#f9fafb] group-hover:bg-[#f9fafb]">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-[#111]">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
-                    </div>
-                  </div>
                 </div>
-              </Link>
+              </div>
             </div>
           ))}
         </div>

@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import { MissionVision } from "@/components/about/MissionVision";
 import { AboutHero } from "@/components/about/AboutHero";
 import { AboutImage } from "@/components/about/AboutImage";
 import { AboutContent } from "@/components/about/AboutContent";
-import { FAQ } from "@/components/FAQ";
 
 export const metadata: Metadata = {
   title: "About | The Ark Group",
@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <>
-      <AboutHero />
-      <AboutImage />
+      <MissionVision />
       <AboutContent />
-      <FAQ />
+      <AboutImage />
+      <AboutHero />
     </>
   );
 }

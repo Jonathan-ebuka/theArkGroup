@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import emailjs from "@emailjs/browser";
 
 const SYMBOLS = [
   { symbol: "+", top: 5,  left: 3,   size: 6,   speed: 0.22, color: "navy" },
@@ -19,6 +20,9 @@ const SYMBOLS = [
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [showPopup, setShowPopup] = useState(false);
   const pageRef = useRef<HTMLDivElement>(null);
   const symbolRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
@@ -62,16 +66,65 @@ export default function ContactPage() {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const formRef = useRef<HTMLFormElement>(null);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setLoading(true);
+    setError("");
+
+    try {
+      await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        formRef.current!,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+      );
+      setSubmitted(true);
+      setShowPopup(true);
+      formRef.current?.reset();
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
+
+  const closePopup = useCallback(() => setShowPopup(false), []);
 
   const inputClasses =
     "w-full border-b border-gray-200 bg-transparent px-0 py-4 font-sans text-sm text-[#111] placeholder:text-gray-400 focus:border-gray-900 focus:outline-none transition-colors duration-300";
 
   return (
     <div ref={pageRef} className="relative overflow-hidden bg-white">
+      {/* Success Popup */}
+      {showPopup && (
+        <div
+          className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/40 backdrop-blur-sm"
+          onClick={closePopup}
+        >
+          <div
+            className="relative mx-4 w-full max-w-md bg-white p-10 shadow-2xl animate-[fadeUp_0.4s_ease-out]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="mb-6 flex h-14 w-14 items-center justify-center rounded-full bg-green-50">
+              <svg className="h-7 w-7 text-green-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M20 6L9 17l-5-5" />
+              </svg>
+            </div>
+            <h3 className="font-sans text-2xl font-medium text-[#111]">Message sent</h3>
+            <p className="mt-3 text-sm leading-relaxed text-gray-500">
+              Thank you for reaching out. Our team will review your message and get back to you within 48 hours.
+            </p>
+            <button
+              onClick={closePopup}
+              className="mt-8 w-full border border-gold py-3 text-sm font-medium tracking-wide text-gold transition-colors duration-300 hover:bg-gold hover:text-white"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       {/* Floating background symbols */}
       {SYMBOLS.map((s, i) => (
         <span
@@ -122,7 +175,7 @@ export default function ContactPage() {
                 to discuss your project and next steps.
               </p>
               <div className="mt-8 space-y-3">
-                <p className="text-sm font-medium text-[#111]">hello@thearkgroup.com</p>
+                <p className="text-sm font-medium text-[#111]">Enquiries@thearkgroup.ie</p>
                 <p className="text-xs text-gray-400 uppercase tracking-widest">Response within 48 hours</p>
               </div>
             </div>
@@ -170,7 +223,7 @@ export default function ContactPage() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-10">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-10">
                   <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
                     <div>
                       <label className="mb-2 block text-xs font-medium uppercase tracking-[0.2em] text-gray-400">
@@ -236,16 +289,33 @@ export default function ContactPage() {
                     />
                   </div>
 
+                  {error && (
+                    <p className="text-sm text-red-500">{error}</p>
+                  )}
+
                   <div className="flex items-center justify-between pt-4">
                     <button
                       type="submit"
-                      className="group relative inline-flex items-center gap-3 overflow-hidden border border-gold px-8 py-4 text-sm font-medium tracking-wide text-gold"
+                      disabled={loading}
+                      className="group relative inline-flex items-center gap-3 overflow-hidden border border-gold px-8 py-4 text-sm font-medium tracking-wide text-gold disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       <span className="absolute inset-0 translate-y-full bg-gold transition-transform duration-500 ease-out group-hover:translate-y-0" />
-                      <span className="relative transition-colors duration-300 group-hover:text-white">Send message</span>
-                      <svg className="relative h-4 w-4 transition-all duration-300 group-hover:text-white group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                        <path d="M5 12h14M12 5l7 7-7 7" />
-                      </svg>
+                      {loading ? (
+                        <span className="relative flex items-center gap-2">
+                          <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                          </svg>
+                          Sending...
+                        </span>
+                      ) : (
+                        <>
+                          <span className="relative transition-colors duration-300 group-hover:text-white">Send message</span>
+                          <svg className="relative h-4 w-4 transition-all duration-300 group-hover:text-white group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M5 12h14M12 5l7 7-7 7" />
+                          </svg>
+                        </>
+                      )}
                     </button>
                     <p className="text-xs text-gray-400">We respond within 48 hours.</p>
                   </div>

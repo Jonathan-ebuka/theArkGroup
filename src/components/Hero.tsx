@@ -285,10 +285,10 @@ export function Hero() {
               <span className="relative transition-colors duration-500 group-hover:text-navy">Work With Us</span>
             </Link>
             <Link
-              href="#divisions"
+              href="/about"
               className="group inline-flex items-center gap-2 text-sm tracking-widest text-offwhite/70 uppercase transition-colors duration-300 hover:text-offwhite"
             >
-              Explore Our Divisions
+              Learn More
               <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">
                 &rarr;
               </span>

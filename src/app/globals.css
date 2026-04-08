@@ -98,6 +98,17 @@ html.lenis, html.lenis body {
   animation: hero-fade-up 0.7s cubic-bezier(0.25, 0.1, 0.25, 1) both;
 }
 
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 /* Scroll-fill text — outlined text that fills on scroll */
 .text-stroke-outline {
   -webkit-text-fill-color: transparent;
