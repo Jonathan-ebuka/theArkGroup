@@ -244,7 +244,7 @@ export default function ContactPage() {
                       <input
                         name="company"
                         type="text"
-                        placeholder="Company name (optional)"
+                        placeholder="Company name"
                         className={inputClasses}
                       />
                     </div>
@@ -270,7 +270,7 @@ export default function ContactPage() {
                       <input
                         name="phone"
                         type="tel"
-                        placeholder="+1 000 000 0000 (optional)"
+                        placeholder="+353 00 000 0000"
                         className={inputClasses}
                       />
                     </div>

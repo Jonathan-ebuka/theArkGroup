@@ -29,6 +29,12 @@ export function Footer() {
             <p className="mt-4 max-w-sm text-sm leading-relaxed text-slate-light">
               Strategic architecture for businesses built to last.
             </p>
+            <a
+              href="mailto:Enquiries@thearkgroup.ie"
+              className="mt-3 inline-block text-sm text-offwhite/60 transition-colors duration-300 hover:text-gold"
+            >
+              Enquiries@thearkgroup.ie
+            </a>
           </div>
 
           {/* Links */}

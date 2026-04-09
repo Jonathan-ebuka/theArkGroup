@@ -161,9 +161,9 @@ export function Navigation() {
             </ul>
 
             <div className='mt-8 pt-6'>
-              <p className='font-serif text-lg text-offwhite'>
-                hello@thearkgroup.com
-              </p>
+              <a href='mailto:Enquiries@thearkgroup.ie' className='font-serif text-lg text-offwhite transition-colors duration-300 hover:text-gold'>
+                Enquiries@thearkgroup.ie
+              </a>
               <p className='mt-2 text-xs tracking-widest text-offwhite/40 uppercase'>
                 We respond within 48 hours
               </p>
